@@ -2,14 +2,14 @@ package com.smartdevicelink.transport;
 
 import com.smartdevicelink.exception.SdlException;
 import com.smartdevicelink.protocol.SdlPacket;
+import com.smartdevicelink.proxy.constants.Constants;
 import com.smartdevicelink.trace.SdlTrace;
 import com.smartdevicelink.trace.enums.InterfaceActivityDirection;
 import com.smartdevicelink.transport.enums.TransportType;
 import com.smartdevicelink.util.DebugTool;
 
 public abstract class SdlTransport {
-	private static final String SDL_LIB_TRACE_KEY = "42baba60-eb57-11df-98cf-0800200c9a66";
-	
+
 	private final static String FailurePropagating_Msg = "Failure propagating ";
 	private Boolean isConnected = false;
 	
@@ -37,7 +37,7 @@ public abstract class SdlTransport {
 			if (packet!=null) {
 				// Send transport data to the siphon server
 				//FIXME SiphonServer.sendBytesFromSDL(receivedBytes, 0, receivedBytesLength);
-				//SdlTrace.logTransportEvent("", null, InterfaceActivityDirection.Receive, receivedBytes, receivedBytesLength, SDL_LIB_TRACE_KEY);
+				//SdlTrace.logTransportEvent("", null, InterfaceActivityDirection.Receive, receivedBytes, receivedBytesLength, Constants.SDL_LIB_TRACE_KEY);
 				
 				_transportListener.onTransportPacketReceived(packet);
 			} // end-if
@@ -79,7 +79,7 @@ public abstract class SdlTransport {
 	protected void handleTransportConnected() {
 		isConnected = true;
 		try {
-	    	SdlTrace.logTransportEvent("Transport.connected", null, InterfaceActivityDirection.Receive, null, 0, SDL_LIB_TRACE_KEY);
+	    	SdlTrace.logTransportEvent("Transport.connected", null, InterfaceActivityDirection.Receive, null, 0, Constants.SDL_LIB_TRACE_KEY);
 			_transportListener.onTransportConnected();
 		} catch (Exception excp) {
 			DebugTool.logError(FailurePropagating_Msg + "onTransportConnected: " + excp.toString(), excp);
@@ -93,7 +93,7 @@ public abstract class SdlTransport {
 		isConnected = false;
 
 		try {
-	    	SdlTrace.logTransportEvent("Transport.disconnect: " + info, null, InterfaceActivityDirection.Transmit, null, 0, SDL_LIB_TRACE_KEY);
+	    	SdlTrace.logTransportEvent("Transport.disconnect: " + info, null, InterfaceActivityDirection.Transmit, null, 0, Constants.SDL_LIB_TRACE_KEY);
 			_transportListener.onTransportDisconnected(info);
 		} catch (Exception excp) {
 			DebugTool.logError(FailurePropagating_Msg + "onTransportDisconnected: " + excp.toString(), excp);

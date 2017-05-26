@@ -7,6 +7,7 @@ import junit.framework.TestCase;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.smartdevicelink.proxy.constants.Constants;
 import com.smartdevicelink.proxy.rpc.AirbagStatus;
 import com.smartdevicelink.proxy.rpc.enums.VehicleDataEventStatus;
 import com.smartdevicelink.test.JsonUtils;
@@ -78,14 +79,14 @@ public class AirbagStatusTests extends TestCase{
         JSONObject reference = new JSONObject();
 
         try{
-            reference.put(AirbagStatus.KEY_DRIVER_AIRBAG_DEPLOYED, Test.GENERAL_VEHCILEDATAEVENTSTATUS);
-            reference.put(AirbagStatus.KEY_DRIVER_CURTAIN_AIRBAG_DEPLOYED, Test.GENERAL_VEHCILEDATAEVENTSTATUS);
-            reference.put(AirbagStatus.KEY_DRIVER_KNEE_AIRBAG_DEPLOYED, Test.GENERAL_VEHCILEDATAEVENTSTATUS);
-            reference.put(AirbagStatus.KEY_DRIVER_SIDE_AIRBAG_DEPLOYED, Test.GENERAL_VEHCILEDATAEVENTSTATUS);
-            reference.put(AirbagStatus.KEY_PASSENGER_AIRBAG_DEPLOYED, Test.GENERAL_VEHCILEDATAEVENTSTATUS);
-            reference.put(AirbagStatus.KEY_PASSENGER_CURTAIN_AIRBAG_DEPLOYED, Test.GENERAL_VEHCILEDATAEVENTSTATUS);
-            reference.put(AirbagStatus.KEY_PASSENGER_KNEE_AIRBAG_DEPLOYED, Test.GENERAL_VEHCILEDATAEVENTSTATUS);
-            reference.put(AirbagStatus.KEY_PASSENGER_SIDE_AIRBAG_DEPLOYED, Test.GENERAL_VEHCILEDATAEVENTSTATUS);
+            reference.put(Constants.KEY_DRIVER_AIRBAG_DEPLOYED, Test.GENERAL_VEHCILEDATAEVENTSTATUS);
+            reference.put(Constants.KEY_DRIVER_CURTAIN_AIRBAG_DEPLOYED, Test.GENERAL_VEHCILEDATAEVENTSTATUS);
+            reference.put(Constants.KEY_DRIVER_KNEE_AIRBAG_DEPLOYED, Test.GENERAL_VEHCILEDATAEVENTSTATUS);
+            reference.put(Constants.KEY_DRIVER_SIDE_AIRBAG_DEPLOYED, Test.GENERAL_VEHCILEDATAEVENTSTATUS);
+            reference.put(Constants.KEY_PASSENGER_AIRBAG_DEPLOYED, Test.GENERAL_VEHCILEDATAEVENTSTATUS);
+            reference.put(Constants.KEY_PASSENGER_CURTAIN_AIRBAG_DEPLOYED, Test.GENERAL_VEHCILEDATAEVENTSTATUS);
+            reference.put(Constants.KEY_PASSENGER_KNEE_AIRBAG_DEPLOYED, Test.GENERAL_VEHCILEDATAEVENTSTATUS);
+            reference.put(Constants.KEY_PASSENGER_SIDE_AIRBAG_DEPLOYED, Test.GENERAL_VEHCILEDATAEVENTSTATUS);
 
             JSONObject underTest = msg.serializeJSON();
             assertEquals(Test.MATCH, reference.length(), underTest.length());

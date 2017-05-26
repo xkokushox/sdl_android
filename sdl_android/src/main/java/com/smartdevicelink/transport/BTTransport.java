@@ -16,6 +16,7 @@ import com.smartdevicelink.SdlConnection.SdlConnection;
 import com.smartdevicelink.exception.SdlException;
 import com.smartdevicelink.exception.SdlExceptionCause;
 import com.smartdevicelink.protocol.SdlPacket;
+import com.smartdevicelink.proxy.constants.Constants;
 import com.smartdevicelink.trace.SdlTrace;
 import com.smartdevicelink.trace.enums.InterfaceActivityDirection;
 import com.smartdevicelink.transport.enums.TransportType;
@@ -28,9 +29,6 @@ import com.smartdevicelink.util.DebugTool;
 public class BTTransport extends SdlTransport {	
 	//936DA01F9ABD4D9D80C702AF85C822A8
 	private final static UUID SDL_V4_MOBILE_APPLICATION_SVC_CLASS = new UUID(0x936DA01F9ABD4D9DL, 0x80C702AF85C822A8L);
-
-	private static final String SDL_LIB_TRACE_KEY = "42baba60-eb57-11df-98cf-0800200c9a66";
-
 	private static final int READ_BUFFER_SIZE = 4096;
 
 	private BluetoothAdapter _adapter = null;
@@ -204,7 +202,7 @@ public class BTTransport extends SdlTransport {
 			throw new SdlException("Could not open connection to SDL.", SdlExceptionCause.SDL_CONNECTION_FAILED);
 		}
 		
-		SdlTrace.logTransportEvent("BTTransport: listening for incoming connect to service ID " + _listeningServiceUUID, null, InterfaceActivityDirection.Receive, null, 0, SDL_LIB_TRACE_KEY);
+		SdlTrace.logTransportEvent("BTTransport: listening for incoming connect to service ID " + _listeningServiceUUID, null, InterfaceActivityDirection.Receive, null, 0, Constants.SDL_LIB_TRACE_KEY);
 		
 		// Setup transportReader thread
 		_transportReader = new TransportReaderThread();
@@ -242,7 +240,7 @@ public class BTTransport extends SdlTransport {
 			disconnectMsg += ", " + ex.toString();
 		} // end-if
 
-		SdlTrace.logTransportEvent("BTTransport.disconnect: " + disconnectMsg, null, InterfaceActivityDirection.Transmit, null, 0, SDL_LIB_TRACE_KEY);
+		SdlTrace.logTransportEvent("BTTransport.disconnect: " + disconnectMsg, null, InterfaceActivityDirection.Transmit, null, 0, Constants.SDL_LIB_TRACE_KEY);
 
 		try {			
 			if (_transportReader != null) {
@@ -343,7 +341,7 @@ public class BTTransport extends SdlTransport {
 		}
 		
 		private void acceptConnection() {
-			SdlTrace.logTransportEvent("BTTransport: Waiting for incoming RFCOMM connect", "", InterfaceActivityDirection.Receive, null, 0, SDL_LIB_TRACE_KEY);
+			SdlTrace.logTransportEvent("BTTransport: Waiting for incoming RFCOMM connect", "", InterfaceActivityDirection.Receive, null, 0, Constants.SDL_LIB_TRACE_KEY);
 
 			try {
 				// Blocks thread until connection established.
@@ -357,7 +355,7 @@ public class BTTransport extends SdlTransport {
 				// Log info of the connected device
 				BluetoothDevice btDevice = _activeSocket.getRemoteDevice();
 				String btDeviceInfoXml = SdlTrace.getBTDeviceInfo(btDevice);
-				SdlTrace.logTransportEvent("BTTransport: RFCOMM Connection Accepted", btDeviceInfoXml, InterfaceActivityDirection.Receive, null, 0, SDL_LIB_TRACE_KEY);
+				SdlTrace.logTransportEvent("BTTransport: RFCOMM Connection Accepted", btDeviceInfoXml, InterfaceActivityDirection.Receive, null, 0, Constants.SDL_LIB_TRACE_KEY);
 				
 				_output = _activeSocket.getOutputStream();
 				_input = _activeSocket.getInputStream();

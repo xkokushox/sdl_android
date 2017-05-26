@@ -55,6 +55,7 @@ import com.smartdevicelink.proxy.callbacks.OnError;
 import com.smartdevicelink.proxy.callbacks.OnProxyClosed;
 import com.smartdevicelink.proxy.callbacks.OnServiceEnded;
 import com.smartdevicelink.proxy.callbacks.OnServiceNACKed;
+import com.smartdevicelink.proxy.constants.Constants;
 import com.smartdevicelink.proxy.interfaces.IProxyListenerALM;
 import com.smartdevicelink.proxy.interfaces.IProxyListenerBase;
 import com.smartdevicelink.proxy.interfaces.IPutFileResponseListener;
@@ -675,7 +676,7 @@ public abstract class SdlProxyBase<proxyListenerType extends IProxyListenerBase>
 		} 
 		
 		// Trace that ctor has fired
-		SdlTrace.logProxyEvent("SdlProxy Created, instanceID=" + this.toString(), SDL_LIB_TRACE_KEY);		
+		SdlTrace.logProxyEvent("SdlProxy Created, instanceID=" + this.toString(), Constants.SDL_LIB_TRACE_KEY);
 	}
 	
 	protected SdlProxyBase(proxyListenerType listener, SdlProxyConfigurationResources sdlProxyConfigurationResources, 
@@ -1330,7 +1331,7 @@ public abstract class SdlProxyBase<proxyListenerType extends IProxyListenerBase>
 		} catch (SdlException e) {
 			throw e;
 		} finally {
-			SdlTrace.logProxyEvent("SdlProxy cleaned.", SDL_LIB_TRACE_KEY);
+			SdlTrace.logProxyEvent("SdlProxy cleaned.", Constants.SDL_LIB_TRACE_KEY);
 		}
 	}
 	
@@ -1345,7 +1346,7 @@ public abstract class SdlProxyBase<proxyListenerType extends IProxyListenerBase>
 		
 		_proxyDisposed = true;
 		
-		SdlTrace.logProxyEvent("Application called dispose() method.", SDL_LIB_TRACE_KEY);
+		SdlTrace.logProxyEvent("Application called dispose() method.", Constants.SDL_LIB_TRACE_KEY);
 		
 		try{
 			// Clean the proxy
@@ -1382,7 +1383,7 @@ public abstract class SdlProxyBase<proxyListenerType extends IProxyListenerBase>
 		} catch (SdlException e) {
 			throw e;
 		} finally {
-			SdlTrace.logProxyEvent("SdlProxy disposed.", SDL_LIB_TRACE_KEY);
+			SdlTrace.logProxyEvent("SdlProxy disposed.", Constants.SDL_LIB_TRACE_KEY);
 		}
 	} // end-method
 
@@ -1523,7 +1524,7 @@ public abstract class SdlProxyBase<proxyListenerType extends IProxyListenerBase>
 				sdlSession.sendMessage(message);
 			}
 		}		
-		SdlTrace.logProxyEvent("SdlProxy sending Protocol Message: " + message.toString(), SDL_LIB_TRACE_KEY);
+		SdlTrace.logProxyEvent("SdlProxy sending Protocol Message: " + message.toString(), Constants.SDL_LIB_TRACE_KEY);
 	}
 	
 	private void handleErrorsFromOutgoingMessageDispatcher(String info, Exception e) {
@@ -1601,11 +1602,11 @@ public abstract class SdlProxyBase<proxyListenerType extends IProxyListenerBase>
 			/****************End Legacy Specific Call-backs************/
 			} else {
 				// Diagnostics
-				SdlTrace.logProxyEvent("Unknown RPC Message encountered. Check for an updated version of the SDL Proxy.", SDL_LIB_TRACE_KEY);
+				SdlTrace.logProxyEvent("Unknown RPC Message encountered. Check for an updated version of the SDL Proxy.", Constants.SDL_LIB_TRACE_KEY);
 				DebugTool.logError("Unknown RPC Message encountered. Check for an updated version of the SDL Proxy.");
 			}
 			
-		SdlTrace.logProxyEvent("Proxy fired callback: " + message.getFunctionName(), SDL_LIB_TRACE_KEY);
+		SdlTrace.logProxyEvent("Proxy fired callback: " + message.getFunctionName(), Constants.SDL_LIB_TRACE_KEY);
 		} catch(final Exception e) {
 			// Pass error to application through listener 
 			DebugTool.logError("Error handing proxy event.", e);
@@ -1642,7 +1643,7 @@ public abstract class SdlProxyBase<proxyListenerType extends IProxyListenerBase>
 		// error checking. 
 	private void sendRPCRequestPrivate(RPCRequest request) throws SdlException {
 			try {
-			SdlTrace.logRPCEvent(InterfaceActivityDirection.Transmit, request, SDL_LIB_TRACE_KEY);
+			SdlTrace.logRPCEvent(InterfaceActivityDirection.Transmit, request, Constants.SDL_LIB_TRACE_KEY);
 						
 			byte[] msgBytes = JsonRPCMarshaller.marshall(request, _wiproVersion);
 	
@@ -1679,7 +1680,7 @@ public abstract class SdlProxyBase<proxyListenerType extends IProxyListenerBase>
 				}
 			}
 		} catch (OutOfMemoryError e) {
-			SdlTrace.logProxyEvent("OutOfMemory exception while sending request " + request.getFunctionName(), SDL_LIB_TRACE_KEY);
+			SdlTrace.logProxyEvent("OutOfMemory exception while sending request " + request.getFunctionName(), Constants.SDL_LIB_TRACE_KEY);
 			throw new SdlException("OutOfMemory exception while sending request " + request.getFunctionName(), e, SdlExceptionCause.INVALID_ARGUMENT);
 		}
 	}
@@ -1828,7 +1829,7 @@ public abstract class SdlProxyBase<proxyListenerType extends IProxyListenerBase>
 		String messageType = rpcMsg.getMessageType();
 		
 		if (messageType.equals(RPCMessage.KEY_RESPONSE)) {			
-			SdlTrace.logRPCEvent(InterfaceActivityDirection.Receive, new RPCResponse(rpcMsg), SDL_LIB_TRACE_KEY);
+			SdlTrace.logRPCEvent(InterfaceActivityDirection.Receive, new RPCResponse(rpcMsg), Constants.SDL_LIB_TRACE_KEY);
 			
 			// Check to ensure response is not from an internal message (reserved correlation ID)
 			if (isCorrelationIDProtected((new RPCResponse(hash)).getCorrelationID())) {
@@ -2842,7 +2843,7 @@ public abstract class SdlProxyBase<proxyListenerType extends IProxyListenerBase>
 			} // end-if
 
 		} else if (messageType.equals(RPCMessage.KEY_NOTIFICATION)) {
-			SdlTrace.logRPCEvent(InterfaceActivityDirection.Receive, new RPCNotification(rpcMsg), SDL_LIB_TRACE_KEY);
+			SdlTrace.logRPCEvent(InterfaceActivityDirection.Receive, new RPCNotification(rpcMsg), Constants.SDL_LIB_TRACE_KEY);
 			if (functionName.equals(FunctionID.ON_HMI_STATUS.toString())) {
 				// OnHMIStatus
 				
@@ -3240,7 +3241,7 @@ public abstract class SdlProxyBase<proxyListenerType extends IProxyListenerBase>
 			} // end-if
 		} // end-if notification
 
-		SdlTrace.logProxyEvent("Proxy received RPC Message: " + functionName, SDL_LIB_TRACE_KEY);
+		SdlTrace.logProxyEvent("Proxy received RPC Message: " + functionName, Constants.SDL_LIB_TRACE_KEY);
 	}
 	
 	/**
@@ -3256,16 +3257,16 @@ public abstract class SdlProxyBase<proxyListenerType extends IProxyListenerBase>
 		
 		// Test if request is null
 		if (request == null) {
-			SdlTrace.logProxyEvent("Application called sendRPCRequest method with a null RPCRequest.", SDL_LIB_TRACE_KEY);
+			SdlTrace.logProxyEvent("Application called sendRPCRequest method with a null RPCRequest.", Constants.SDL_LIB_TRACE_KEY);
 			throw new IllegalArgumentException("sendRPCRequest cannot be called with a null request.");
 		}
 		
-		SdlTrace.logProxyEvent("Application called sendRPCRequest method for RPCRequest: ." + request.getFunctionName(), SDL_LIB_TRACE_KEY);
+		SdlTrace.logProxyEvent("Application called sendRPCRequest method for RPCRequest: ." + request.getFunctionName(), Constants.SDL_LIB_TRACE_KEY);
 			
 		// Test if SdlConnection is null
 		synchronized(CONNECTION_REFERENCE_LOCK) {
 			if (sdlSession == null || !sdlSession.getIsConnected()) {
-				SdlTrace.logProxyEvent("Application attempted to send and RPCRequest without a connected transport.", SDL_LIB_TRACE_KEY);
+				SdlTrace.logProxyEvent("Application attempted to send and RPCRequest without a connected transport.", Constants.SDL_LIB_TRACE_KEY);
 				throw new SdlException("There is no valid connection to SDL. sendRPCRequest cannot be called until SDL has been connected.", SdlExceptionCause.SDL_UNAVAILABLE);
 			}
 		}
@@ -3273,7 +3274,7 @@ public abstract class SdlProxyBase<proxyListenerType extends IProxyListenerBase>
 		// Test for illegal correlation ID
 		if (isCorrelationIDProtected(request.getCorrelationID())) {
 			
-			SdlTrace.logProxyEvent("Application attempted to use the reserved correlation ID, " + request.getCorrelationID(), SDL_LIB_TRACE_KEY);
+			SdlTrace.logProxyEvent("Application attempted to use the reserved correlation ID, " + request.getCorrelationID(), Constants.SDL_LIB_TRACE_KEY);
 			throw new SdlException("Invalid correlation ID. The correlation ID, " + request.getCorrelationID()
 					+ " , is a reserved correlation ID.", SdlExceptionCause.RESERVED_CORRELATION_ID);
 		}
@@ -3281,7 +3282,7 @@ public abstract class SdlProxyBase<proxyListenerType extends IProxyListenerBase>
 		// Throw exception if RPCRequest is sent when SDL is unavailable 
 		if (!_appInterfaceRegisterd && !request.getFunctionName().equals(FunctionID.REGISTER_APP_INTERFACE.toString())) {
 			
-			SdlTrace.logProxyEvent("Application attempted to send an RPCRequest (non-registerAppInterface), before the interface was registerd.", SDL_LIB_TRACE_KEY);
+			SdlTrace.logProxyEvent("Application attempted to send an RPCRequest (non-registerAppInterface), before the interface was registerd.", Constants.SDL_LIB_TRACE_KEY);
 			throw new SdlException("SDL is currently unavailable. RPC Requests cannot be sent.", SdlExceptionCause.SDL_UNAVAILABLE);
 		}
 				
@@ -3289,7 +3290,7 @@ public abstract class SdlProxyBase<proxyListenerType extends IProxyListenerBase>
 			if (request.getFunctionName().equals(FunctionID.REGISTER_APP_INTERFACE.toString())
 					|| request.getFunctionName().equals(FunctionID.UNREGISTER_APP_INTERFACE.toString())) {
 				
-				SdlTrace.logProxyEvent("Application attempted to send a RegisterAppInterface or UnregisterAppInterface while using ALM.", SDL_LIB_TRACE_KEY);
+				SdlTrace.logProxyEvent("Application attempted to send a RegisterAppInterface or UnregisterAppInterface while using ALM.", Constants.SDL_LIB_TRACE_KEY);
 				throw new SdlException("The RPCRequest, " + request.getFunctionName() + 
 						", is unallowed using the Advanced Lifecycle Management Model.", SdlExceptionCause.INCORRECT_LIFECYCLE_MODEL);
 			}
@@ -3299,7 +3300,7 @@ public abstract class SdlProxyBase<proxyListenerType extends IProxyListenerBase>
 	} // end-method
 	
 	protected void notifyProxyClosed(final String info, final Exception e, final SdlDisconnectedReason reason) {		
-		SdlTrace.logProxyEvent("NotifyProxyClose", SDL_LIB_TRACE_KEY);
+		SdlTrace.logProxyEvent("NotifyProxyClose", Constants.SDL_LIB_TRACE_KEY);
 		OnProxyClosed message = new OnProxyClosed(info, e, reason);
 		queueInternalMessage(message);
 	}

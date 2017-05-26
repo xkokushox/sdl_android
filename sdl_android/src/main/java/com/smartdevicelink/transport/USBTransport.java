@@ -18,6 +18,7 @@ import android.os.ParcelFileDescriptor;
 import com.smartdevicelink.exception.SdlException;
 import com.smartdevicelink.exception.SdlExceptionCause;
 import com.smartdevicelink.protocol.SdlPacket;
+import com.smartdevicelink.proxy.constants.Constants;
 import com.smartdevicelink.trace.SdlTrace;
 import com.smartdevicelink.trace.enums.InterfaceActivityDirection;
 import com.smartdevicelink.transport.enums.TransportType;
@@ -49,11 +50,6 @@ public class USBTransport extends SdlTransport {
      * String tag for logging.
      */
     private static final String TAG = USBTransport.class.getSimpleName();
-    /**
-     * Key for SdlTrace.
-     */
-    private static final String SDL_LIB_TRACE_KEY =
-            "42baba60-eb57-11df-98cf-0800200c9a66";
     /**
      * Broadcast action: sent when the user has granted access to the USB
      * accessory.
@@ -223,7 +219,7 @@ public class USBTransport extends SdlTransport {
                             SdlTrace.logTransportEvent(TAG + ": bytes sent",
                                     null, InterfaceActivityDirection.Transmit,
                                     msgBytes, 0, msgBytes.length,
-                                    SDL_LIB_TRACE_KEY);
+                                    Constants.SDL_LIB_TRACE_KEY);
                         } catch (IOException e) {
                             final String msg = "Failed to send bytes over USB";
                             logW(msg, e);
@@ -373,7 +369,7 @@ public class USBTransport extends SdlTransport {
 
                     SdlTrace.logTransportEvent(TAG + ": disconnect", null,
                             InterfaceActivityDirection.None, null, 0,
-                            SDL_LIB_TRACE_KEY);
+                            Constants.SDL_LIB_TRACE_KEY);
 
                     stopReaderThread();
 
@@ -802,7 +798,7 @@ public class USBTransport extends SdlTransport {
                 logD("Read " + bytesRead + " bytes");
                //FIXME SdlTrace.logTransportEvent(TAG + ": read bytes", null,
                 //        InterfaceActivityDirection.Receive, buffer, bytesRead,
-                //        SDL_LIB_TRACE_KEY);
+                //        Constants.SDL_LIB_TRACE_KEY);
 
                 if (isInterrupted()) {
                     logI("Read some data, but thread is interrupted");

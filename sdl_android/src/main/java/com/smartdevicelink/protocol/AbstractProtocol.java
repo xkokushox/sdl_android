@@ -4,8 +4,7 @@ import com.smartdevicelink.protocol.WiProProtocol.MessageFrameAssembler;
 import com.smartdevicelink.protocol.enums.SessionType;
 
 public abstract class AbstractProtocol {
-	private static final String SDL_LIB_TRACE_KEY = "42baba60-eb57-11df-98cf-0800200c9a66";
-	
+
 	private IProtocolListener _protocolListener = null;
 	//protected IProtocolListener ProtocolListener() { return _protocolListener; }
 	
@@ -63,7 +62,7 @@ public abstract class AbstractProtocol {
 	// This method is called whenever the protocol receives a complete frame
 	protected void handleProtocolFrameReceived(SdlPacket packet, MessageFrameAssembler assembler) {
 	//FIXME	SdlTrace.logProtocolEvent(InterfaceActivityDirection.Receive, header, data, 
-	//			0, packet.dataSize, SDL_LIB_TRACE_KEY);
+	//			0, packet.dataSize, Constants.SDL_LIB_TRACE_KEY);
 		
 		assembler.handleFrame(packet);
 	}
@@ -87,7 +86,7 @@ public abstract class AbstractProtocol {
      */
 	protected void handlePacketToSend(SdlPacket header) {
 	//FIXME	SdlTrace.logProtocolEvent(InterfaceActivityDirection.Transmit, header, data, 
-	//			offset, length, SDL_LIB_TRACE_KEY);
+	//			offset, length, Constants.SDL_LIB_TRACE_KEY);
 	resetOutgoingHeartbeat(SessionType.valueOf((byte)header.getServiceType()), (byte)header.getSessionId());
 
 		synchronized(_frameLock) {
