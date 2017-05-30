@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import com.smartdevicelink.marshal.JsonRPCMarshaller;
 import com.smartdevicelink.protocol.enums.FunctionID;
 import com.smartdevicelink.proxy.RPCMessage;
+import com.smartdevicelink.proxy.constants.Constants;
 import com.smartdevicelink.proxy.rpc.AirbagStatus;
 import com.smartdevicelink.proxy.rpc.BeltStatus;
 import com.smartdevicelink.proxy.rpc.BodyInformation;
@@ -148,30 +149,30 @@ public class GetVehicleDataResponseTests extends BaseRpcTests{
 			GPSDataObj.put(GPSData.KEY_SPEED, VehicleDataHelper.GPS_SPEED);
 			
 			//BELT_STATUS
-			beltStatusObj.put(BeltStatus.KEY_DRIVER_BELT_DEPLOYED, VehicleDataHelper.BELT_STATUS_DRIVER_DEPLOYED);
-			beltStatusObj.put(BeltStatus.KEY_PASSENGER_BELT_DEPLOYED, VehicleDataHelper.BELT_STATUS_PASSENGER_DEPLOYED);
-			beltStatusObj.put(BeltStatus.KEY_PASSENGER_BUCKLE_BELTED, VehicleDataHelper.BELT_STATUS_PASSENGER_BELTED);
-			beltStatusObj.put(BeltStatus.KEY_DRIVER_BUCKLE_BELTED, VehicleDataHelper.BELT_STATUS_DRIVER_BELTED);
-			beltStatusObj.put(BeltStatus.KEY_LEFT_ROW_2_BUCKLE_BELTED, VehicleDataHelper.BELT_STATUS_LEFT_ROW_2_BELTED);
-			beltStatusObj.put(BeltStatus.KEY_PASSENGER_CHILD_DETECTED, VehicleDataHelper.BELT_STATUS_PASSENGER_CHILD);
-			beltStatusObj.put(BeltStatus.KEY_RIGHT_ROW_2_BUCKLE_BELTED, VehicleDataHelper.BELT_STATUS_RIGHT_ROW_2_BELTED);
-			beltStatusObj.put(BeltStatus.KEY_MIDDLE_ROW_2_BUCKLE_BELTED, VehicleDataHelper.BELT_STATUS_MIDDLE_ROW_2_BELTED);
-			beltStatusObj.put(BeltStatus.KEY_MIDDLE_ROW_3_BUCKLE_BELTED, VehicleDataHelper.BELT_STATUS_MIDDLE_ROW_3_BELTED);
-			beltStatusObj.put(BeltStatus.KEY_LEFT_ROW_3_BUCKLE_BELTED, VehicleDataHelper.BELT_STATUS_LEFT_ROW_3_BELTED);
-			beltStatusObj.put(BeltStatus.KEY_RIGHT_ROW_3_BUCKLE_BELTED, VehicleDataHelper.BELT_STATUS_RIGHT_ROW_3_BELTED);
-			beltStatusObj.put(BeltStatus.KEY_REAR_INFLATABLE_BELTED, VehicleDataHelper.BELT_STATUS_LEFT_REAR_INFLATABLE_BELTED);
-			beltStatusObj.put(BeltStatus.KEY_RIGHT_REAR_INFLATABLE_BELTED, VehicleDataHelper.BELT_STATUS_RIGHT_REAR_INFLATABLE_BELTED);
-			beltStatusObj.put(BeltStatus.KEY_MIDDLE_ROW_1_BELT_DEPLOYED, VehicleDataHelper.BELT_STATUS_MIDDLE_ROW_1_DEPLOYED);
-			beltStatusObj.put(BeltStatus.KEY_MIDDLE_ROW_1_BUCKLE_BELTED, VehicleDataHelper.BELT_STATUS_MIDDLE_ROW_1_BELTED);
+			beltStatusObj.put(Constants.KEY_DRIVER_BELT_DEPLOYED, VehicleDataHelper.BELT_STATUS_DRIVER_DEPLOYED);
+			beltStatusObj.put(Constants.KEY_PASSENGER_BELT_DEPLOYED, VehicleDataHelper.BELT_STATUS_PASSENGER_DEPLOYED);
+			beltStatusObj.put(Constants.KEY_PASSENGER_BUCKLE_BELTED, VehicleDataHelper.BELT_STATUS_PASSENGER_BELTED);
+			beltStatusObj.put(Constants.KEY_DRIVER_BUCKLE_BELTED, VehicleDataHelper.BELT_STATUS_DRIVER_BELTED);
+			beltStatusObj.put(Constants.KEY_LEFT_ROW_2_BUCKLE_BELTED, VehicleDataHelper.BELT_STATUS_LEFT_ROW_2_BELTED);
+			beltStatusObj.put(Constants.KEY_PASSENGER_CHILD_DETECTED, VehicleDataHelper.BELT_STATUS_PASSENGER_CHILD);
+			beltStatusObj.put(Constants.KEY_RIGHT_ROW_2_BUCKLE_BELTED, VehicleDataHelper.BELT_STATUS_RIGHT_ROW_2_BELTED);
+			beltStatusObj.put(Constants.KEY_MIDDLE_ROW_2_BUCKLE_BELTED, VehicleDataHelper.BELT_STATUS_MIDDLE_ROW_2_BELTED);
+			beltStatusObj.put(Constants.KEY_MIDDLE_ROW_3_BUCKLE_BELTED, VehicleDataHelper.BELT_STATUS_MIDDLE_ROW_3_BELTED);
+			beltStatusObj.put(Constants.KEY_LEFT_ROW_3_BUCKLE_BELTED, VehicleDataHelper.BELT_STATUS_LEFT_ROW_3_BELTED);
+			beltStatusObj.put(Constants.KEY_RIGHT_ROW_3_BUCKLE_BELTED, VehicleDataHelper.BELT_STATUS_RIGHT_ROW_3_BELTED);
+			beltStatusObj.put(Constants.KEY_REAR_INFLATABLE_BELTED, VehicleDataHelper.BELT_STATUS_LEFT_REAR_INFLATABLE_BELTED);
+			beltStatusObj.put(Constants.KEY_RIGHT_REAR_INFLATABLE_BELTED, VehicleDataHelper.BELT_STATUS_RIGHT_REAR_INFLATABLE_BELTED);
+			beltStatusObj.put(Constants.KEY_MIDDLE_ROW_1_BELT_DEPLOYED, VehicleDataHelper.BELT_STATUS_MIDDLE_ROW_1_DEPLOYED);
+			beltStatusObj.put(Constants.KEY_MIDDLE_ROW_1_BUCKLE_BELTED, VehicleDataHelper.BELT_STATUS_MIDDLE_ROW_1_BELTED);
 			
 			//BODY_INFORMATION
-			bodyInformationObj.put(BodyInformation.KEY_PARK_BRAKE_ACTIVE, VehicleDataHelper.BODY_INFORMATION_PARK_BRAKE);
-			bodyInformationObj.put(BodyInformation.KEY_IGNITION_STABLE_STATUS, VehicleDataHelper.BODY_INFORMATION_IGNITION_STATUS);
-			bodyInformationObj.put(BodyInformation.KEY_IGNITION_STATUS, VehicleDataHelper.BODY_INFORMATION_IGNITION_STABLE_STATUS);
-			bodyInformationObj.put(BodyInformation.KEY_DRIVER_DOOR_AJAR, VehicleDataHelper.BODY_INFORMATION_DRIVER_AJAR);
-			bodyInformationObj.put(BodyInformation.KEY_PASSENGER_DOOR_AJAR, VehicleDataHelper.BODY_INFORMATION_PASSENGER_AJAR);
-			bodyInformationObj.put(BodyInformation.KEY_REAR_LEFT_DOOR_AJAR, VehicleDataHelper.BODY_INFORMATION_REAR_LEFT_AJAR);
-			bodyInformationObj.put(BodyInformation.KEY_REAR_RIGHT_DOOR_AJAR, VehicleDataHelper.BODY_INFORMATION_REAR_RIGHT_AJAR);
+			bodyInformationObj.put(Constants.KEY_PARK_BRAKE_ACTIVE, VehicleDataHelper.BODY_INFORMATION_PARK_BRAKE);
+			bodyInformationObj.put(Constants.KEY_IGNITION_STABLE_STATUS, VehicleDataHelper.BODY_INFORMATION_IGNITION_STATUS);
+			bodyInformationObj.put(Constants.KEY_IGNITION_STATUS, VehicleDataHelper.BODY_INFORMATION_IGNITION_STABLE_STATUS);
+			bodyInformationObj.put(Constants.KEY_DRIVER_DOOR_AJAR, VehicleDataHelper.BODY_INFORMATION_DRIVER_AJAR);
+			bodyInformationObj.put(Constants.KEY_PASSENGER_DOOR_AJAR, VehicleDataHelper.BODY_INFORMATION_PASSENGER_AJAR);
+			bodyInformationObj.put(Constants.KEY_REAR_LEFT_DOOR_AJAR, VehicleDataHelper.BODY_INFORMATION_REAR_LEFT_AJAR);
+			bodyInformationObj.put(Constants.KEY_REAR_RIGHT_DOOR_AJAR, VehicleDataHelper.BODY_INFORMATION_REAR_RIGHT_AJAR);
 			
 			//DEVICE_STATUS
 			deviceStatusObj.put(DeviceStatus.KEY_VOICE_REC_ON, VehicleDataHelper.DEVICE_STATUS_VOICE_REC);
@@ -197,56 +198,56 @@ public class GetVehicleDataResponseTests extends BaseRpcTests{
 			ECallInfoObj.put(ECallInfo.KEY_E_CALL_CONFIRMATION_STATUS, VehicleDataHelper.E_CALL_INFO_CONFIRMATION_STATUS);
 	    	
 			//AIRBAG_STATUS
-			airbagStatusObj.put(AirbagStatus.KEY_DRIVER_AIRBAG_DEPLOYED, VehicleDataHelper.AIRBAG_STATUS_DRIVER_DEPLOYED);
-			airbagStatusObj.put(AirbagStatus.KEY_DRIVER_SIDE_AIRBAG_DEPLOYED, VehicleDataHelper.AIRBAG_STATUS_DRIVER_SIDE_DEPLOYED);
-			airbagStatusObj.put(AirbagStatus.KEY_DRIVER_CURTAIN_AIRBAG_DEPLOYED, VehicleDataHelper.AIRBAG_STATUS_DRIVER_CURTAIN_DEPLOYED);
-			airbagStatusObj.put(AirbagStatus.KEY_DRIVER_KNEE_AIRBAG_DEPLOYED, VehicleDataHelper.AIRBAG_STATUS_DRIVER_KNEE_DEPLOYED);
-			airbagStatusObj.put(AirbagStatus.KEY_PASSENGER_AIRBAG_DEPLOYED, VehicleDataHelper.AIRBAG_STATUS_PASSENGER_DEPLOYED);
-			airbagStatusObj.put(AirbagStatus.KEY_PASSENGER_SIDE_AIRBAG_DEPLOYED, VehicleDataHelper.AIRBAG_STATUS_PASSENGER_SIDE_DEPLOYED);
-			airbagStatusObj.put(AirbagStatus.KEY_PASSENGER_CURTAIN_AIRBAG_DEPLOYED, VehicleDataHelper.AIRBAG_STATUS_PASSENGER_CURTAIN_DEPLOYED);
-			airbagStatusObj.put(AirbagStatus.KEY_PASSENGER_KNEE_AIRBAG_DEPLOYED, VehicleDataHelper.AIRBAG_STATUS_PASSENGER_KNEE_DEPLOYED);
+			airbagStatusObj.put(Constants.KEY_DRIVER_AIRBAG_DEPLOYED, VehicleDataHelper.AIRBAG_STATUS_DRIVER_DEPLOYED);
+			airbagStatusObj.put(Constants.KEY_DRIVER_SIDE_AIRBAG_DEPLOYED, VehicleDataHelper.AIRBAG_STATUS_DRIVER_SIDE_DEPLOYED);
+			airbagStatusObj.put(Constants.KEY_DRIVER_CURTAIN_AIRBAG_DEPLOYED, VehicleDataHelper.AIRBAG_STATUS_DRIVER_CURTAIN_DEPLOYED);
+			airbagStatusObj.put(Constants.KEY_DRIVER_KNEE_AIRBAG_DEPLOYED, VehicleDataHelper.AIRBAG_STATUS_DRIVER_KNEE_DEPLOYED);
+			airbagStatusObj.put(Constants.KEY_PASSENGER_AIRBAG_DEPLOYED, VehicleDataHelper.AIRBAG_STATUS_PASSENGER_DEPLOYED);
+			airbagStatusObj.put(Constants.KEY_PASSENGER_SIDE_AIRBAG_DEPLOYED, VehicleDataHelper.AIRBAG_STATUS_PASSENGER_SIDE_DEPLOYED);
+			airbagStatusObj.put(Constants.KEY_PASSENGER_CURTAIN_AIRBAG_DEPLOYED, VehicleDataHelper.AIRBAG_STATUS_PASSENGER_CURTAIN_DEPLOYED);
+			airbagStatusObj.put(Constants.KEY_PASSENGER_KNEE_AIRBAG_DEPLOYED, VehicleDataHelper.AIRBAG_STATUS_PASSENGER_KNEE_DEPLOYED);
 			
 			//EMERGENCY_EVENT
-			emergencyEventObj.put(EmergencyEvent.KEY_EMERGENCY_EVENT_TYPE, VehicleDataHelper.EMERGENCY_EVENT_TYPE);
-			emergencyEventObj.put(EmergencyEvent.KEY_FUEL_CUTOFF_STATUS, VehicleDataHelper.EMERGENCY_EVENT_FUEL_CUTOFF_STATUS);
-			emergencyEventObj.put(EmergencyEvent.KEY_ROLLOVER_EVENT, VehicleDataHelper.EMERGENCY_EVENT_ROLLOVER_EVENT);
-			emergencyEventObj.put(EmergencyEvent.KEY_MAXIMUM_CHANGE_VELOCITY, VehicleDataHelper.EMERGENCY_EVENT_MAX_CHANGE_VELOCITY);
-			emergencyEventObj.put(EmergencyEvent.KEY_MULTIPLE_EVENTS, VehicleDataHelper.EMERGENCY_EVENT_MULTIPLE_EVENTS);
+			emergencyEventObj.put(Constants.KEY_EMERGENCY_EVENT_TYPE, VehicleDataHelper.EMERGENCY_EVENT_TYPE);
+			emergencyEventObj.put(Constants.KEY_FUEL_CUTOFF_STATUS, VehicleDataHelper.EMERGENCY_EVENT_FUEL_CUTOFF_STATUS);
+			emergencyEventObj.put(Constants.KEY_ROLLOVER_EVENT, VehicleDataHelper.EMERGENCY_EVENT_ROLLOVER_EVENT);
+			emergencyEventObj.put(Constants.KEY_MAXIMUM_CHANGE_VELOCITY, VehicleDataHelper.EMERGENCY_EVENT_MAX_CHANGE_VELOCITY);
+			emergencyEventObj.put(Constants.KEY_MULTIPLE_EVENTS, VehicleDataHelper.EMERGENCY_EVENT_MULTIPLE_EVENTS);
 			
 			//CLUSTER_MODE_STATUS
-			clusterModeStatusObj.put(ClusterModeStatus.KEY_POWER_MODE_ACTIVE, VehicleDataHelper.CLUSTER_MODE_STATUS_POWER_MODE_ACTIVE);
-			clusterModeStatusObj.put(ClusterModeStatus.KEY_POWER_MODE_QUALIFICATION_STATUS, VehicleDataHelper.CLUSTER_MODE_STATUS_POWER_MODE_QUALIFICATION_STATUS);
-			clusterModeStatusObj.put(ClusterModeStatus.KEY_CAR_MODE_STATUS, VehicleDataHelper.CLUSTER_MODE_STATUS_CAR_MODE_STATUS);
-			clusterModeStatusObj.put(ClusterModeStatus.KEY_POWER_MODE_STATUS, VehicleDataHelper.CLUSTER_MODE_STATUS_POWER_MODE_STATUS);
+			clusterModeStatusObj.put(Constants.KEY_POWER_MODE_ACTIVE, VehicleDataHelper.CLUSTER_MODE_STATUS_POWER_MODE_ACTIVE);
+			clusterModeStatusObj.put(Constants.KEY_POWER_MODE_QUALIFICATION_STATUS, VehicleDataHelper.CLUSTER_MODE_STATUS_POWER_MODE_QUALIFICATION_STATUS);
+			clusterModeStatusObj.put(Constants.KEY_CAR_MODE_STATUS, VehicleDataHelper.CLUSTER_MODE_STATUS_CAR_MODE_STATUS);
+			clusterModeStatusObj.put(Constants.KEY_POWER_MODE_STATUS, VehicleDataHelper.CLUSTER_MODE_STATUS_POWER_MODE_STATUS);
 			
 			//MY_KEY
 			myKeyObj.put(MyKey.KEY_E_911_OVERRIDE, VehicleDataHelper.MY_KEY_E_911_OVERRIDE);
 			
-			reference.put(GetVehicleDataResponse.KEY_SPEED, VehicleDataHelper.SPEED);
-			reference.put(GetVehicleDataResponse.KEY_RPM, VehicleDataHelper.RPM);
-			reference.put(GetVehicleDataResponse.KEY_EXTERNAL_TEMPERATURE, VehicleDataHelper.EXTERNAL_TEMPERATURE);
-			reference.put(GetVehicleDataResponse.KEY_FUEL_LEVEL, VehicleDataHelper.FUEL_LEVEL);
-			reference.put(GetVehicleDataResponse.KEY_VIN, VehicleDataHelper.VIN);
-			reference.put(GetVehicleDataResponse.KEY_PRNDL, VehicleDataHelper.PRNDL_FINAL);
-			reference.put(GetVehicleDataResponse.KEY_TIRE_PRESSURE, tireStatusObj);
-			reference.put(GetVehicleDataResponse.KEY_ENGINE_TORQUE, VehicleDataHelper.ENGINE_TORQUE);
-			reference.put(GetVehicleDataResponse.KEY_ODOMETER, VehicleDataHelper.ODOMETER);
-			reference.put(GetVehicleDataResponse.KEY_GPS, GPSDataObj);
-			reference.put(GetVehicleDataResponse.KEY_FUEL_LEVEL_STATE, VehicleDataHelper.FUEL_LEVEL_STATE);
-			reference.put(GetVehicleDataResponse.KEY_INSTANT_FUEL_CONSUMPTION, VehicleDataHelper.INSTANT_FUEL_CONSUMPTION);
-			reference.put(GetVehicleDataResponse.KEY_BELT_STATUS, beltStatusObj);
-			reference.put(GetVehicleDataResponse.KEY_BODY_INFORMATION, bodyInformationObj);
-			reference.put(GetVehicleDataResponse.KEY_DEVICE_STATUS, deviceStatusObj);
-			reference.put(GetVehicleDataResponse.KEY_DRIVER_BRAKING, VehicleDataHelper.DRIVER_BRAKING);
-			reference.put(GetVehicleDataResponse.KEY_WIPER_STATUS, VehicleDataHelper.WIPER_STATUS);
-			reference.put(GetVehicleDataResponse.KEY_HEAD_LAMP_STATUS, headLampStatusObj);
-			reference.put(GetVehicleDataResponse.KEY_ACC_PEDAL_POSITION, VehicleDataHelper.ACC_PEDAL_POSITION);
-			reference.put(GetVehicleDataResponse.KEY_STEERING_WHEEL_ANGLE, VehicleDataHelper.STEERING_WHEEL_ANGLE);
-			reference.put(GetVehicleDataResponse.KEY_E_CALL_INFO, ECallInfoObj);
-			reference.put(GetVehicleDataResponse.KEY_AIRBAG_STATUS, airbagStatusObj);
-			reference.put(GetVehicleDataResponse.KEY_EMERGENCY_EVENT, emergencyEventObj);
-			reference.put(GetVehicleDataResponse.KEY_CLUSTER_MODE_STATUS, clusterModeStatusObj);
-			reference.put(GetVehicleDataResponse.KEY_MY_KEY, myKeyObj);
+			reference.put(Constants.KEY_SPEED, VehicleDataHelper.SPEED);
+			reference.put(Constants.KEY_RPM, VehicleDataHelper.RPM);
+			reference.put(Constants.KEY_EXTERNAL_TEMPERATURE, VehicleDataHelper.EXTERNAL_TEMPERATURE);
+			reference.put(Constants.KEY_FUEL_LEVEL, VehicleDataHelper.FUEL_LEVEL);
+			reference.put(Constants.KEY_VIN, VehicleDataHelper.VIN);
+			reference.put(Constants.KEY_PRNDL, VehicleDataHelper.PRNDL_FINAL);
+			reference.put(Constants.KEY_TIRE_PRESSURE, tireStatusObj);
+			reference.put(Constants.KEY_ENGINE_TORQUE, VehicleDataHelper.ENGINE_TORQUE);
+			reference.put(Constants.KEY_ODOMETER, VehicleDataHelper.ODOMETER);
+			reference.put(Constants.KEY_GPS, GPSDataObj);
+			reference.put(Constants.KEY_FUEL_LEVEL_STATE, VehicleDataHelper.FUEL_LEVEL_STATE);
+			reference.put(Constants.KEY_INSTANT_FUEL_CONSUMPTION, VehicleDataHelper.INSTANT_FUEL_CONSUMPTION);
+			reference.put(Constants.KEY_BELT_STATUS, beltStatusObj);
+			reference.put(Constants.KEY_BODY_INFORMATION, bodyInformationObj);
+			reference.put(Constants.KEY_DEVICE_STATUS, deviceStatusObj);
+			reference.put(Constants.KEY_DRIVER_BRAKING, VehicleDataHelper.DRIVER_BRAKING);
+			reference.put(Constants.KEY_WIPER_STATUS, VehicleDataHelper.WIPER_STATUS);
+			reference.put(Constants.KEY_HEAD_LAMP_STATUS, headLampStatusObj);
+			reference.put(Constants.KEY_ACC_PEDAL_POSITION, VehicleDataHelper.ACC_PEDAL_POSITION);
+			reference.put(Constants.KEY_STEERING_WHEEL_ANGLE, VehicleDataHelper.STEERING_WHEEL_ANGLE);
+			reference.put(Constants.KEY_E_CALL_INFO, ECallInfoObj);
+			reference.put(Constants.KEY_AIRBAG_STATUS, airbagStatusObj);
+			reference.put(Constants.KEY_EMERGENCY_EVENT, emergencyEventObj);
+			reference.put(Constants.KEY_CLUSTER_MODE_STATUS, clusterModeStatusObj);
+			reference.put(Constants.KEY_MY_KEY, myKeyObj);
 			
 			JSONObject underTest = msg.serializeJSON();
 			

@@ -3,6 +3,7 @@ package com.smartdevicelink.proxy.rpc;
 import java.util.Hashtable;
 
 import com.smartdevicelink.proxy.RPCStruct;
+import com.smartdevicelink.proxy.constants.Constants;
 import com.smartdevicelink.proxy.rpc.enums.AudioType;
 import com.smartdevicelink.proxy.rpc.enums.BitsPerSample;
 import com.smartdevicelink.proxy.rpc.enums.SamplingRate;
@@ -46,9 +47,6 @@ import com.smartdevicelink.proxy.rpc.enums.SamplingRate;
  * @since SmartDeviceLink 2.0
  */
 public class AudioPassThruCapabilities extends RPCStruct {
-	public static final String KEY_SAMPLING_RATE = "samplingRate";
-	public static final String KEY_AUDIO_TYPE = "audioType";
-	public static final String KEY_BITS_PER_SAMPLE = "bitsPerSample";
 	
 	/**
 	 * Constructs a newly allocated AudioPassThruCapabilities object
@@ -69,9 +67,9 @@ public class AudioPassThruCapabilities extends RPCStruct {
      */
     public void setSamplingRate(SamplingRate samplingRate) {
     	if (samplingRate != null) {
-    		store.put(KEY_SAMPLING_RATE, samplingRate);
+    		store.put(Constants.KEY_SAMPLING_RATE, samplingRate);
     	} else {
-    		store.remove(KEY_SAMPLING_RATE);
+    		store.remove(Constants.KEY_SAMPLING_RATE);
     	}
     }
     
@@ -80,7 +78,7 @@ public class AudioPassThruCapabilities extends RPCStruct {
      * @return  the sampling rate for AudioPassThru
      */
     public SamplingRate getSamplingRate() {
-        Object obj = store.get(KEY_SAMPLING_RATE);
+        Object obj = store.get(Constants.KEY_SAMPLING_RATE);
         if (obj instanceof SamplingRate) {
             return (SamplingRate) obj;
         } else if (obj instanceof String) {
@@ -95,9 +93,9 @@ public class AudioPassThruCapabilities extends RPCStruct {
      */
     public void setBitsPerSample(BitsPerSample bitsPerSample) {
     	if (bitsPerSample != null) {
-    		store.put(KEY_BITS_PER_SAMPLE, bitsPerSample);
+    		store.put(Constants.KEY_BITS_PER_SAMPLE, bitsPerSample);
     	} else {
-    		store.remove(KEY_BITS_PER_SAMPLE);
+    		store.remove(Constants.KEY_BITS_PER_SAMPLE);
     	}
     }
     
@@ -106,7 +104,7 @@ public class AudioPassThruCapabilities extends RPCStruct {
      * @return the sample depth in bit for AudioPassThru
      */
     public BitsPerSample getBitsPerSample() {
-        Object obj = store.get(KEY_BITS_PER_SAMPLE);
+        Object obj = store.get(Constants.KEY_BITS_PER_SAMPLE);
         if (obj instanceof BitsPerSample) {
             return (BitsPerSample) obj;
         } else if (obj instanceof String) {
@@ -121,9 +119,9 @@ public class AudioPassThruCapabilities extends RPCStruct {
      */
     public void setAudioType(AudioType audioType) {
     	if (audioType != null) {
-    		store.put(KEY_AUDIO_TYPE, audioType);
+    		store.put(Constants.KEY_AUDIO_TYPE, audioType);
     	} else {
-    		store.remove(KEY_AUDIO_TYPE);
+    		store.remove(Constants.KEY_AUDIO_TYPE);
     	}
     }
     
@@ -132,7 +130,7 @@ public class AudioPassThruCapabilities extends RPCStruct {
      * @return the audiotype for AudioPassThru
      */
     public AudioType getAudioType() {
-        Object obj = store.get(KEY_AUDIO_TYPE);
+        Object obj = store.get(Constants.KEY_AUDIO_TYPE);
         if (obj instanceof AudioType) {
             return (AudioType) obj;
         } else if (obj instanceof String) {

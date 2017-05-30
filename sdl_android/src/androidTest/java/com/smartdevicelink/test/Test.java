@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import android.util.Log;
 
 import com.smartdevicelink.proxy.TTSChunkFactory;
+import com.smartdevicelink.proxy.constants.Constants;
 import com.smartdevicelink.proxy.rpc.AudioPassThruCapabilities;
 import com.smartdevicelink.proxy.rpc.ButtonCapabilities;
 import com.smartdevicelink.proxy.rpc.Choice;
@@ -541,9 +542,9 @@ public class Test {
 			JSON_SOFTBUTTONCAPABILITIES.put(jsonButton);
 			
 			jsonButton = new JSONObject();
-			jsonButton.put(AudioPassThruCapabilities.KEY_AUDIO_TYPE, GENERAL_AUDIOTYPE);
-			jsonButton.put(AudioPassThruCapabilities.KEY_BITS_PER_SAMPLE, GENERAL_BITSPERSAMPLE);
-			jsonButton.put(AudioPassThruCapabilities.KEY_SAMPLING_RATE, GENERAL_SAMPLINGRATE);
+			jsonButton.put(Constants.KEY_AUDIO_TYPE, GENERAL_AUDIOTYPE);
+			jsonButton.put(Constants.KEY_BITS_PER_SAMPLE, GENERAL_BITSPERSAMPLE);
+			jsonButton.put(Constants.KEY_SAMPLING_RATE, GENERAL_SAMPLINGRATE);
 			JSON_AUDIOPASSTHRUCAPABILITIES.put(jsonButton);
 			
 			JSON_TEXTFIELD.put(TextField.KEY_CHARACTER_SET, CharacterSet.CID1SET);

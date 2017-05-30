@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import com.smartdevicelink.marshal.JsonRPCMarshaller;
 import com.smartdevicelink.protocol.enums.FunctionID;
 import com.smartdevicelink.proxy.RPCMessage;
+import com.smartdevicelink.proxy.constants.Constants;
 import com.smartdevicelink.proxy.rpc.Alert;
 import com.smartdevicelink.proxy.rpc.SoftButton;
 import com.smartdevicelink.proxy.rpc.TTSChunk;
@@ -57,14 +58,14 @@ public class AlertTests extends BaseRpcTests{
         JSONObject result = new JSONObject();
         
         try{        	
-            result.put(Alert.KEY_DURATION, Test.GENERAL_INT);
-            result.put(Alert.KEY_ALERT_TEXT_1, Test.GENERAL_STRING);
-            result.put(Alert.KEY_ALERT_TEXT_2, Test.GENERAL_STRING);
-            result.put(Alert.KEY_ALERT_TEXT_3, Test.GENERAL_STRING);
-            result.put(Alert.KEY_PLAY_TONE, Test.GENERAL_BOOLEAN);
-            result.put(Alert.KEY_PROGRESS_INDICATOR, Test.GENERAL_BOOLEAN);
-            result.put(Alert.KEY_TTS_CHUNKS, Test.JSON_TTSCHUNKS);
-            result.put(Alert.KEY_SOFT_BUTTONS, Test.JSON_SOFTBUTTONS);
+            result.put(Constants.KEY_DURATION, Test.GENERAL_INT);
+            result.put(Constants.KEY_ALERT_TEXT_1, Test.GENERAL_STRING);
+            result.put(Constants.KEY_ALERT_TEXT_2, Test.GENERAL_STRING);
+            result.put(Constants.KEY_ALERT_TEXT_3, Test.GENERAL_STRING);
+            result.put(Constants.KEY_PLAY_TONE, Test.GENERAL_BOOLEAN);
+            result.put(Constants.KEY_PROGRESS_INDICATOR, Test.GENERAL_BOOLEAN);
+            result.put(Constants.KEY_TTS_CHUNKS, Test.JSON_TTSCHUNKS);
+            result.put(Constants.KEY_SOFT_BUTTONS, Test.JSON_SOFTBUTTONS);
         }catch(JSONException e){
         	fail(Test.JSON_FAIL);
         }
@@ -129,14 +130,14 @@ public class AlertTests extends BaseRpcTests{
 			assertEquals(Test.MATCH, JsonUtils.readIntegerFromJsonObject(body, RPCMessage.KEY_CORRELATION_ID), cmd.getCorrelationID());
 
 			JSONObject parameters = JsonUtils.readJsonObjectFromJsonObject(body, RPCMessage.KEY_PARAMETERS);
-			assertEquals(Test.MATCH, JsonUtils.readBooleanFromJsonObject(parameters, Alert.KEY_PLAY_TONE), cmd.getPlayTone());
-			assertEquals(Test.MATCH, JsonUtils.readIntegerFromJsonObject(parameters, Alert.KEY_DURATION), cmd.getDuration());
-			assertEquals(Test.MATCH, JsonUtils.readStringFromJsonObject(parameters, Alert.KEY_ALERT_TEXT_1), cmd.getAlertText1());
-			assertEquals(Test.MATCH, JsonUtils.readStringFromJsonObject(parameters, Alert.KEY_ALERT_TEXT_2), cmd.getAlertText2());
-			assertEquals(Test.MATCH, JsonUtils.readStringFromJsonObject(parameters, Alert.KEY_ALERT_TEXT_3), cmd.getAlertText3());
-			assertEquals(Test.MATCH, JsonUtils.readBooleanFromJsonObject(parameters, Alert.KEY_PROGRESS_INDICATOR), cmd.getProgressIndicator());
+			assertEquals(Test.MATCH, JsonUtils.readBooleanFromJsonObject(parameters, Constants.KEY_PLAY_TONE), cmd.getPlayTone());
+			assertEquals(Test.MATCH, JsonUtils.readIntegerFromJsonObject(parameters, Constants.KEY_DURATION), cmd.getDuration());
+			assertEquals(Test.MATCH, JsonUtils.readStringFromJsonObject(parameters, Constants.KEY_ALERT_TEXT_1), cmd.getAlertText1());
+			assertEquals(Test.MATCH, JsonUtils.readStringFromJsonObject(parameters, Constants.KEY_ALERT_TEXT_2), cmd.getAlertText2());
+			assertEquals(Test.MATCH, JsonUtils.readStringFromJsonObject(parameters, Constants.KEY_ALERT_TEXT_3), cmd.getAlertText3());
+			assertEquals(Test.MATCH, JsonUtils.readBooleanFromJsonObject(parameters, Constants.KEY_PROGRESS_INDICATOR), cmd.getProgressIndicator());
 			
-			JSONArray ttsChunkArray = JsonUtils.readJsonArrayFromJsonObject(parameters, Alert.KEY_TTS_CHUNKS);
+			JSONArray ttsChunkArray = JsonUtils.readJsonArrayFromJsonObject(parameters, Constants.KEY_TTS_CHUNKS);
 			List<TTSChunk> ttsChunkList = new ArrayList<TTSChunk>();
 			for (int index = 0; index < ttsChunkArray.length(); index++) {
 	        	TTSChunk chunk = new TTSChunk(JsonRPCMarshaller.deserializeJSONObject( (JSONObject)ttsChunkArray.get(index)) );
@@ -144,7 +145,7 @@ public class AlertTests extends BaseRpcTests{
 			}
 			assertTrue(Test.TRUE,  Validator.validateTtsChunks(ttsChunkList, cmd.getTtsChunks()));
 			
-			JSONArray softButtonArray = JsonUtils.readJsonArrayFromJsonObject(parameters, Alert.KEY_SOFT_BUTTONS);
+			JSONArray softButtonArray = JsonUtils.readJsonArrayFromJsonObject(parameters, Constants.KEY_SOFT_BUTTONS);
 			List<SoftButton> softButtonList = new ArrayList<SoftButton>();
 			for (int index = 0; index < softButtonArray.length(); index++) {
 				SoftButton chunk = new SoftButton(JsonRPCMarshaller.deserializeJSONObject( (JSONObject)softButtonArray.get(index)) );

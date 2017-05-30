@@ -7,6 +7,7 @@ import junit.framework.TestCase;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.smartdevicelink.proxy.constants.Constants;
 import com.smartdevicelink.proxy.rpc.BodyInformation;
 import com.smartdevicelink.proxy.rpc.enums.IgnitionStableStatus;
 import com.smartdevicelink.proxy.rpc.enums.IgnitionStatus;
@@ -70,13 +71,13 @@ public class BodyInformationTests extends TestCase{
         JSONObject reference = new JSONObject();
 
         try{
-            reference.put(BodyInformation.KEY_PARK_BRAKE_ACTIVE, Test.GENERAL_BOOLEAN);
-            reference.put(BodyInformation.KEY_IGNITION_STATUS, Test.GENERAL_IGNITIONSTATUS);
-            reference.put(BodyInformation.KEY_IGNITION_STABLE_STATUS, Test.GENERAL_IGNITIONSTABLESTATUS);
-            reference.put(BodyInformation.KEY_DRIVER_DOOR_AJAR, Test.GENERAL_BOOLEAN);
-            reference.put(BodyInformation.KEY_PASSENGER_DOOR_AJAR, Test.GENERAL_BOOLEAN);
-            reference.put(BodyInformation.KEY_REAR_LEFT_DOOR_AJAR, Test.GENERAL_BOOLEAN);
-            reference.put(BodyInformation.KEY_REAR_RIGHT_DOOR_AJAR, Test.GENERAL_BOOLEAN);
+            reference.put(Constants.KEY_PARK_BRAKE_ACTIVE, Test.GENERAL_BOOLEAN);
+            reference.put(Constants.KEY_IGNITION_STATUS, Test.GENERAL_IGNITIONSTATUS);
+            reference.put(Constants.KEY_IGNITION_STABLE_STATUS, Test.GENERAL_IGNITIONSTABLESTATUS);
+            reference.put(Constants.KEY_DRIVER_DOOR_AJAR, Test.GENERAL_BOOLEAN);
+            reference.put(Constants.KEY_PASSENGER_DOOR_AJAR, Test.GENERAL_BOOLEAN);
+            reference.put(Constants.KEY_REAR_LEFT_DOOR_AJAR, Test.GENERAL_BOOLEAN);
+            reference.put(Constants.KEY_REAR_RIGHT_DOOR_AJAR, Test.GENERAL_BOOLEAN);
 
             JSONObject underTest = msg.serializeJSON();            
             assertEquals(Test.MATCH, reference.length(), underTest.length());

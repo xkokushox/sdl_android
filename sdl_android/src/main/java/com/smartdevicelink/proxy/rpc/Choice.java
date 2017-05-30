@@ -4,6 +4,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import com.smartdevicelink.proxy.RPCStruct;
+import com.smartdevicelink.proxy.constants.Constants;
 import com.smartdevicelink.util.DebugTool;
 
 /**
@@ -56,13 +57,6 @@ import com.smartdevicelink.util.DebugTool;
   * @see Image
  */
 public class Choice extends RPCStruct {
-	public static final String KEY_SECONDARY_TEXT = "secondaryText";
-	public static final String KEY_TERTIARY_TEXT = "tertiaryText";
-	public static final String KEY_SECONDARY_IMAGE = "secondaryImage";
-	public static final String KEY_MENU_NAME = "menuName";
-	public static final String KEY_VR_COMMANDS = "vrCommands";
-	public static final String KEY_CHOICE_ID = "choiceID";
-	public static final String KEY_IMAGE = "image";
 	/**
 	 * Constructs a newly allocated Choice object
 	 */
@@ -79,7 +73,7 @@ public class Choice extends RPCStruct {
      * @return choiceID Min: 0;  Max: 65535
      */    
     public Integer getChoiceID() {
-        return (Integer) store.get(KEY_CHOICE_ID);
+        return (Integer) store.get(Constants.KEY_CHOICE_ID);
     }
     /**
      * Set the application-scoped identifier that uniquely identifies this choice.
@@ -87,9 +81,9 @@ public class Choice extends RPCStruct {
      */    
     public void setChoiceID(Integer choiceID) {
         if (choiceID != null) {
-            store.put(KEY_CHOICE_ID, choiceID);
+            store.put(Constants.KEY_CHOICE_ID, choiceID);
         } else {
-        	store.remove(KEY_CHOICE_ID);
+        	store.remove(Constants.KEY_CHOICE_ID);
         }
     }
     /**
@@ -99,7 +93,7 @@ public class Choice extends RPCStruct {
      * @return menuName the menu name
      */    
     public String getMenuName() {
-        return (String) store.get(KEY_MENU_NAME);
+        return (String) store.get(Constants.KEY_MENU_NAME);
     }
     /**
      * Text which appears in menu, representing this choice.
@@ -109,9 +103,9 @@ public class Choice extends RPCStruct {
      */    
     public void setMenuName(String menuName) {
         if (menuName != null) {
-            store.put(KEY_MENU_NAME, menuName);
+            store.put(Constants.KEY_MENU_NAME, menuName);
         } else {
-        	store.remove(KEY_MENU_NAME);
+        	store.remove(Constants.KEY_MENU_NAME);
         }
     }
     /**
@@ -121,8 +115,8 @@ public class Choice extends RPCStruct {
      */    
     @SuppressWarnings("unchecked")
     public List<String> getVrCommands() {
-        if (store.get(KEY_VR_COMMANDS) instanceof List<?>) {
-        	List<?> list = (List<?>)store.get( KEY_VR_COMMANDS);
+        if (store.get(Constants.KEY_VR_COMMANDS) instanceof List<?>) {
+        	List<?> list = (List<?>)store.get( Constants.KEY_VR_COMMANDS);
         	if (list != null && list.size() > 0) {
         		Object obj = list.get(0);
         		if (obj instanceof String) {
@@ -139,9 +133,9 @@ public class Choice extends RPCStruct {
      */    
     public void setVrCommands(List<String> vrCommands) {
         if (vrCommands != null) {
-            store.put(KEY_VR_COMMANDS, vrCommands);
+            store.put(Constants.KEY_VR_COMMANDS, vrCommands);
         } else {
-        	store.remove(KEY_VR_COMMANDS);
+        	store.remove(Constants.KEY_VR_COMMANDS);
         }
     }
     /**
@@ -150,9 +144,9 @@ public class Choice extends RPCStruct {
      */    
     public void setImage(Image image) {
         if (image != null) {
-            store.put(KEY_IMAGE, image);
+            store.put(Constants.KEY_IMAGE, image);
         } else {
-        	store.remove(KEY_IMAGE);
+        	store.remove(Constants.KEY_IMAGE);
         }
     }
     /**
@@ -161,34 +155,34 @@ public class Choice extends RPCStruct {
      */    
     @SuppressWarnings("unchecked")
     public Image getImage() {
-    	Object obj = store.get(KEY_IMAGE);
+    	Object obj = store.get(Constants.KEY_IMAGE);
         if (obj instanceof Image) {
             return (Image) obj;
         } else if (obj instanceof Hashtable) {
         	try {
         		return new Image((Hashtable<String, Object>) obj);
             } catch (Exception e) {
-            	DebugTool.logError("Failed to parse " + getClass().getSimpleName() + "." + KEY_IMAGE, e);
+            	DebugTool.logError("Failed to parse " + getClass().getSimpleName() + "." + Constants.KEY_IMAGE, e);
             }
         }
         return null;
     }
     
     public String getSecondaryText() {
-        return (String) store.get(KEY_SECONDARY_TEXT);
+        return (String) store.get(Constants.KEY_SECONDARY_TEXT);
     }
 
     public void setSecondaryText(String secondaryText) {
         if (secondaryText != null) {
-            store.put(KEY_SECONDARY_TEXT, secondaryText);
+            store.put(Constants.KEY_SECONDARY_TEXT, secondaryText);
         }
         else {
-            store.remove(KEY_SECONDARY_TEXT);
+            store.remove(Constants.KEY_SECONDARY_TEXT);
         }
     }
 
     public String getTertiaryText() {
-        return (String) store.get(KEY_TERTIARY_TEXT);
+        return (String) store.get(Constants.KEY_TERTIARY_TEXT);
     }
 
     public void setTertiaryText(String tertiaryText) {

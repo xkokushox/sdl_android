@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import com.smartdevicelink.marshal.JsonRPCMarshaller;
 import com.smartdevicelink.protocol.enums.FunctionID;
 import com.smartdevicelink.proxy.RPCMessage;
+import com.smartdevicelink.proxy.constants.Constants;
 import com.smartdevicelink.proxy.rpc.AlertResponse;
 import com.smartdevicelink.test.BaseRpcTests;
 import com.smartdevicelink.test.JsonUtils;
@@ -44,7 +45,7 @@ public class AlertResponseTests extends BaseRpcTests{
         JSONObject result = new JSONObject();
 
         try{
-            result.put(AlertResponse.KEY_TRY_AGAIN_TIME, TRY_AGAIN_TIME);
+            result.put(Constants.KEY_TRY_AGAIN_TIME, TRY_AGAIN_TIME);
         }catch(JSONException e){
         	fail(Test.JSON_FAIL);
         }
@@ -84,11 +85,11 @@ public class AlertResponseTests extends BaseRpcTests{
 			assertNotNull(Test.NOT_NULL, body);
 			
 			// Test everything in the json body.
-			assertEquals(Test.MATCH, JsonUtils.readStringFromJsonObject(body, RPCMessage.KEY_FUNCTION_NAME), cmd.getFunctionName());
-			assertEquals(Test.MATCH, JsonUtils.readIntegerFromJsonObject(body, RPCMessage.KEY_CORRELATION_ID), cmd.getCorrelationID());
+			assertEquals(Test.MATCH, JsonUtils.readStringFromJsonObject(body, Constants.KEY_FUNCTION_NAME), cmd.getFunctionName());
+			assertEquals(Test.MATCH, JsonUtils.readIntegerFromJsonObject(body, Constants.KEY_CORRELATION_ID), cmd.getCorrelationID());
 
-			JSONObject parameters = JsonUtils.readJsonObjectFromJsonObject(body, RPCMessage.KEY_PARAMETERS);
-			assertEquals(Test.MATCH, JsonUtils.readIntegerFromJsonObject(parameters, AlertResponse.KEY_TRY_AGAIN_TIME), cmd.getTryAgainTime());
+			JSONObject parameters = JsonUtils.readJsonObjectFromJsonObject(body, Constants.KEY_PARAMETERS);
+			assertEquals(Test.MATCH, JsonUtils.readIntegerFromJsonObject(parameters, Constants.KEY_TRY_AGAIN_TIME), cmd.getTryAgainTime());
 			
 		} catch (JSONException e) {
 			e.printStackTrace();

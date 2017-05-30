@@ -7,6 +7,7 @@ import junit.framework.TestCase;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.smartdevicelink.proxy.constants.Constants;
 import com.smartdevicelink.proxy.rpc.AudioPassThruCapabilities;
 import com.smartdevicelink.proxy.rpc.enums.AudioType;
 import com.smartdevicelink.proxy.rpc.enums.BitsPerSample;
@@ -59,9 +60,9 @@ public class AudioPassThruCapabilitiesTest extends TestCase{
         JSONObject reference = new JSONObject();
 
         try{
-            reference.put(AudioPassThruCapabilities.KEY_AUDIO_TYPE, Test.GENERAL_AUDIOTYPE);
-            reference.put(AudioPassThruCapabilities.KEY_BITS_PER_SAMPLE, Test.GENERAL_BITSPERSAMPLE);
-            reference.put(AudioPassThruCapabilities.KEY_SAMPLING_RATE, Test.GENERAL_SAMPLINGRATE);
+            reference.put(Constants.KEY_AUDIO_TYPE, Test.GENERAL_AUDIOTYPE);
+            reference.put(Constants.KEY_BITS_PER_SAMPLE, Test.GENERAL_BITSPERSAMPLE);
+            reference.put(Constants.KEY_SAMPLING_RATE, Test.GENERAL_SAMPLINGRATE);
 
             JSONObject underTest = msg.serializeJSON();
             assertEquals(Test.MATCH, reference.length(), underTest.length());

@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import com.smartdevicelink.marshal.JsonRPCMarshaller;
 import com.smartdevicelink.protocol.enums.FunctionID;
 import com.smartdevicelink.proxy.RPCMessage;
+import com.smartdevicelink.proxy.constants.Constants;
 import com.smartdevicelink.proxy.rpc.PerformAudioPassThru;
 import com.smartdevicelink.proxy.rpc.TTSChunk;
 import com.smartdevicelink.proxy.rpc.enums.AudioType;
@@ -58,14 +59,14 @@ public class PerformAudioPassThruTests extends BaseRpcTests {
 		JSONObject result = new JSONObject();
 
 		try {
-			result.put(PerformAudioPassThru.KEY_AUDIO_PASS_THRU_DISPLAY_TEXT_1, Test.GENERAL_STRING);
-			result.put(PerformAudioPassThru.KEY_AUDIO_PASS_THRU_DISPLAY_TEXT_2, Test.GENERAL_STRING);			
-			result.put(PerformAudioPassThru.KEY_MUTE_AUDIO, Test.GENERAL_BOOLEAN);	
-			result.put(PerformAudioPassThru.KEY_MAX_DURATION, Test.GENERAL_INT);
-			result.put(PerformAudioPassThru.KEY_AUDIO_TYPE, Test.GENERAL_AUDIOTYPE);
-			result.put(PerformAudioPassThru.KEY_SAMPLING_RATE, Test.GENERAL_SAMPLINGRATE);
-			result.put(PerformAudioPassThru.KEY_BITS_PER_SAMPLE, Test.GENERAL_BITSPERSAMPLE);
-			result.put(PerformAudioPassThru.KEY_INITIAL_PROMPT,  Test.JSON_TTSCHUNKS);			
+			result.put(Constants.KEY_AUDIO_PASS_THRU_DISPLAY_TEXT_1, Test.GENERAL_STRING);
+			result.put(Constants.KEY_AUDIO_PASS_THRU_DISPLAY_TEXT_2, Test.GENERAL_STRING);
+			result.put(Constants.KEY_MUTE_AUDIO, Test.GENERAL_BOOLEAN);
+			result.put(Constants.KEY_MAX_DURATION, Test.GENERAL_INT);
+			result.put(Constants.KEY_AUDIO_TYPE, Test.GENERAL_AUDIOTYPE);
+			result.put(Constants.KEY_SAMPLING_RATE, Test.GENERAL_SAMPLINGRATE);
+			result.put(Constants.KEY_BITS_PER_SAMPLE, Test.GENERAL_BITSPERSAMPLE);
+			result.put(Constants.KEY_INITIAL_PROMPT,  Test.JSON_TTSCHUNKS);
 		} catch (JSONException e) {
 			fail(Test.JSON_FAIL);
 		}
@@ -134,14 +135,14 @@ public class PerformAudioPassThruTests extends BaseRpcTests {
 			assertEquals(Test.MATCH, JsonUtils.readIntegerFromJsonObject(body, RPCMessage.KEY_CORRELATION_ID), cmd.getCorrelationID());
 
 			JSONObject parameters = JsonUtils.readJsonObjectFromJsonObject(body, RPCMessage.KEY_PARAMETERS);
-			assertEquals(Test.MATCH, JsonUtils.readIntegerFromJsonObject(parameters, PerformAudioPassThru.KEY_MAX_DURATION), (Integer)cmd.getMaxDuration());
-			assertEquals(Test.MATCH, JsonUtils.readStringFromJsonObject(parameters, PerformAudioPassThru.KEY_AUDIO_PASS_THRU_DISPLAY_TEXT_1), cmd.getAudioPassThruDisplayText1());
-			assertEquals(Test.MATCH, JsonUtils.readStringFromJsonObject(parameters, PerformAudioPassThru.KEY_AUDIO_PASS_THRU_DISPLAY_TEXT_2), cmd.getAudioPassThruDisplayText2());
-			assertEquals(Test.MATCH, JsonUtils.readBooleanFromJsonObject(parameters, PerformAudioPassThru.KEY_MUTE_AUDIO), cmd.getMuteAudio());
-			assertEquals(Test.MATCH, JsonUtils.readStringFromJsonObject(parameters, PerformAudioPassThru.KEY_SAMPLING_RATE), cmd.getSamplingRate().toString());
-			assertEquals(Test.MATCH, JsonUtils.readStringFromJsonObject(parameters, PerformAudioPassThru.KEY_AUDIO_TYPE), cmd.getAudioType().toString());
+			assertEquals(Test.MATCH, JsonUtils.readIntegerFromJsonObject(parameters, Constants.KEY_MAX_DURATION), (Integer)cmd.getMaxDuration());
+			assertEquals(Test.MATCH, JsonUtils.readStringFromJsonObject(parameters, Constants.KEY_AUDIO_PASS_THRU_DISPLAY_TEXT_1), cmd.getAudioPassThruDisplayText1());
+			assertEquals(Test.MATCH, JsonUtils.readStringFromJsonObject(parameters, Constants.KEY_AUDIO_PASS_THRU_DISPLAY_TEXT_2), cmd.getAudioPassThruDisplayText2());
+			assertEquals(Test.MATCH, JsonUtils.readBooleanFromJsonObject(parameters, Constants.KEY_MUTE_AUDIO), cmd.getMuteAudio());
+			assertEquals(Test.MATCH, JsonUtils.readStringFromJsonObject(parameters, Constants.KEY_SAMPLING_RATE), cmd.getSamplingRate().toString());
+			assertEquals(Test.MATCH, JsonUtils.readStringFromJsonObject(parameters, Constants.KEY_AUDIO_TYPE), cmd.getAudioType().toString());
 
-			JSONArray ttsChunkArray = JsonUtils.readJsonArrayFromJsonObject(parameters, PerformAudioPassThru.KEY_INITIAL_PROMPT);
+			JSONArray ttsChunkArray = JsonUtils.readJsonArrayFromJsonObject(parameters, Constants.KEY_INITIAL_PROMPT);
 			List<TTSChunk> ttsChunkList = new ArrayList<TTSChunk>();
 			for (int index = 0; index < ttsChunkArray.length(); index++) {
 	        	TTSChunk chunk = new TTSChunk(JsonRPCMarshaller.deserializeJSONObject( (JSONObject)ttsChunkArray.get(index)) );
@@ -149,7 +150,7 @@ public class PerformAudioPassThruTests extends BaseRpcTests {
 			}
 			assertTrue(Test.TRUE,  Validator.validateTtsChunks(ttsChunkList, cmd.getInitialPrompt()));
 			
-			assertEquals(Test.MATCH, JsonUtils.readStringFromJsonObject(parameters, PerformAudioPassThru.KEY_BITS_PER_SAMPLE), cmd.getBitsPerSample().toString());
+			assertEquals(Test.MATCH, JsonUtils.readStringFromJsonObject(parameters, Constants.KEY_BITS_PER_SAMPLE), cmd.getBitsPerSample().toString());
 		} catch (JSONException e) {
 			fail(Test.JSON_FAIL);
 		}    	
